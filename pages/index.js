@@ -2,11 +2,15 @@ import * as React from "react"
 import Container from "@mui/material/Container"
 import Typography from "@mui/material/Typography"
 import { Button, Grid } from "@mui/material"
+import Navbar from "../src/Navbar"
+import Footer from "../src/Footer"
 
 export default function Index() {
   return (
+    <>
+    <Navbar/>
     <Container maxWidth="lg">
-      <Grid container alignItems="center">
+        <Grid container alignItems="center">
         <Grid sm={12} md={8}>
           <img
             style={{
@@ -45,5 +49,7 @@ export default function Index() {
         </Grid>
       </Grid>
     </Container>
+    <Footer/>
+    </>
   )
 }
