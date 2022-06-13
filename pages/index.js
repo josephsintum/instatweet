@@ -7,7 +7,7 @@ export default function Index() {
   return (
     <Container maxWidth="lg">
       <Grid container alignItems="center">
-        <Grid sm={12} md={7} padding={5}>
+        <Grid sm={12} md={7}>
           <img
             style={{
               width: "75%",
