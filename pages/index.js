@@ -11,7 +11,7 @@ export default function Index() {
     <Navbar/>
     <Container maxWidth="lg">
         <Grid container alignItems="center">
-        <Grid sm={12} md={7} padding={5}>
+        <Grid sm={12} md={7}>
           <img
             style={{
               width: "75%",
@@ -35,15 +35,15 @@ export default function Index() {
       </Grid>
 
       <Grid container padding={2} className="subFooterContainer">
-        <Grid md={4} xs={12} lg={4} >
+        <Grid md={4} xs={12} lg={4} padding={2}>
           <img src="/images/img1.png"  className="imgesOfrow" />
           <Typography variant="body2" color="initial" className="bottom-txt">Nisi in officia Lorem velit minim Lorem ut eiusmod adipisicing aliquip voluptate labore. Dolore sit .</Typography>
         </Grid>
-        <Grid md={4} xs={12} lg={4}>
+        <Grid md={4} xs={12} lg={4} padding={2}>
           <img src="/images/img5.png"className="imgesOfrow" />
           <Typography variant="body2" color="initial" className="bottom-txt">Nisi in officia Lorem velit minim Lorem ut eiusmod adipisicing aliquip voluptate labore. Dolore sit .</Typography>
         </Grid>
-        <Grid md={4} xs={12} lg={4} >
+        <Grid md={4} xs={12} lg={4} padding={2} >
           <img src="/images/img6.png"  className="imgesOfrow" />
           <Typography variant="body2" color="initial" className="bottom-txt">Nisi in officia Lorem velit minim Lorem ut eiusmod adipisicing aliquip voluptate labore. Dolore sit .</Typography>
         </Grid>
