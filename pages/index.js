@@ -11,7 +11,7 @@ export default function Index() {
     <Navbar/>
     <Container maxWidth="lg">
         <Grid container alignItems="center">
-        <Grid sm={12} md={8}>
+        <Grid sm={12} md={7} padding={5}>
           <img
             style={{
               width: "75%",
