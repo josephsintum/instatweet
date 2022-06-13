@@ -9,7 +9,6 @@
 .nav-login-buttons{
     margin-left: auto;
     margin-right: 3%;
-    /* background-color:green; */
     width: 300px;
     justify-content: flex-end;
 }
@@ -41,8 +40,6 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-    /* font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace; */
     background-color: #d0e1f027;
 }
 .footer-section {
@@ -53,7 +50,6 @@ body {
     justify-content: center;
     margin-top: 5%;
     margin-bottom: 5%;
-    /* background-color: green; */
     color: #01111f88;
     font-size: 0.8rem;
 }
@@ -68,12 +64,14 @@ body {
     padding: 1%;
 }
 .footer-top-row{
-    /* background-color: red; */
     width: 80%;
     text-align: center;
 }
 .footer-top-row1{
-    /* background-color: blue; */
     width: 80%;
     text-align: center;
+}
+h1 a {
+    text-decoration: none;
+    color:#d0e1f0;
 }
