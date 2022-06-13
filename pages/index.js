@@ -7,17 +7,17 @@ export default function Index() {
   return (
     <Container maxWidth="lg">
       <Grid container alignItems="center">
-        <Grid sm={12} md={8}>
+        <Grid sm={12} md={7} padding={5}>
           <img
             style={{
               width: "75%",
               height: "auto",
             }}
-            src="/images/person_vr.jpg"
+            src="/images/img2.png"
           ></img>
         </Grid>
-        <Grid sm={12} md={4}>
-          <Typography variant="h2">InstaTweet</Typography>
+        <Grid sm={12} md={5}>
+          <Typography variant="h3" fontWeight={600}>InstaTweet</Typography>
           <br />
           <Typography variant="p" component="p">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -27,6 +27,21 @@ export default function Index() {
           </Typography>
           <br />
           <Button variant="outlined">Sign Up</Button>
+        </Grid>
+      </Grid>
+
+      <Grid container padding={2} className="subFooterContainer">
+        <Grid md={4} xs={12} lg={4} >
+          <img src="/images/img1.png"  className="imgesOfrow" />
+          <Typography variant="body2" color="initial" className="bottom-txt">Nisi in officia Lorem velit minim Lorem ut eiusmod adipisicing aliquip voluptate labore. Dolore sit .</Typography>
+        </Grid>
+        <Grid md={4} xs={12} lg={4}>
+          <img src="/images/img5.png"className="imgesOfrow" />
+          <Typography variant="body2" color="initial" className="bottom-txt">Nisi in officia Lorem velit minim Lorem ut eiusmod adipisicing aliquip voluptate labore. Dolore sit .</Typography>
+        </Grid>
+        <Grid md={4} xs={12} lg={4} >
+          <img src="/images/img6.png"  className="imgesOfrow" />
+          <Typography variant="body2" color="initial" className="bottom-txt">Nisi in officia Lorem velit minim Lorem ut eiusmod adipisicing aliquip voluptate labore. Dolore sit .</Typography>
         </Grid>
       </Grid>
     </Container>
