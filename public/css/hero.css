@@ -1,0 +1,11 @@
+.imgesOfrow{
+    width: 10em;
+    margin: 0em 2em;
+}
+.bottom-txt{
+    padding: 0.8em 0.8em;
+}
+.subFooterContainer{
+    max-width: 50em;
+    margin: 1em auto;
+}
