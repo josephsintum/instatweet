@@ -81,13 +81,13 @@ h1 a {
 
 
 .imgesOfrow{
-    width: 10em;
     margin: 0em 2em;
+    height: 30vh;
 }
 .bottom-txt{
-    padding: 0.8em 0.8em;
+    text-align: center;
 }
 .subFooterContainer{
-    max-width: 50em;
+    max-width: 55em;
     margin: 1em auto;
 }
