@@ -1,3 +1,4 @@
+
 const Footer = () => {
     return ( 
         <div className="footer-section">
@@ -11,19 +12,8 @@ const Footer = () => {
             <a href="#">donate</a>
             <a href="#">developers</a>
             <a href="#">contacts</a>
-            <a href="#">hire</a>
-            <a href="#">scholarship</a>
-            </div>
-            <div className="footer-top-row1">
-          
-            <a href="#">home</a>
-            <a href="#">Jobs</a>
-            <a href="#">Locations</a>
-            <a href="#">donate</a>
-            <a href="#">developers</a>
-            </div>
-            <div>
-                copyright2022
+            <a href="/signup">sign up</a>
+            <a href="/login">log in</a>
             </div>
         </div>
      );

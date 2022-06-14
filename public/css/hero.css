@@ -4,7 +4,8 @@
     display: flex;
     flex-direction: row;
     align-items:center;
-    box-shadow: 0px 1px 20px 5px #d0e1f0
+    box-shadow: 0px 1px 20px  #d0e1f0;
+    z-index: 100;
 }
 .nav-login-buttons{
     margin-left: auto;
@@ -47,7 +48,6 @@ body {
     align-items: center;
     justify-content: center;
     margin-top: 5%;
-    margin-bottom: 5%;
     color: #01111f88;
     font-size: 0.8rem;
 }
