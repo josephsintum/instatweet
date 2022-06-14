@@ -15,18 +15,18 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Navbar from '../src/Navbar';
 import Footer from '../src/Footer';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        InstaTweet
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+// function Copyright(props) {
+//   return (
+//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://mui.com/">
+//         InstaTweet
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
 const theme = createTheme();
 
@@ -48,11 +48,15 @@ export default function SignIn() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 9,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            border: '1px solid #d0e1f0',
+            padding: "6%",
+            borderRadius: "3px",
           }}
+          sx:hover={{}}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
@@ -93,14 +97,14 @@ export default function SignIn() {
             >
               Log In
             </Button>
-            <Grid container>
+            <Grid container >
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" fontSize={"0.7rem"}>
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/signup" variant="body2">
+                <Link href="/signup" variant="body2" fontSize={"0.7rem"}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -111,7 +115,7 @@ export default function SignIn() {
       </Container>
     </ThemeProvider>
     <Footer/>
-    <Copyright sx={{ mt: 8, mb: 4 }} />
+    {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
     </>
   );
 }
