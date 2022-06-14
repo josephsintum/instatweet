@@ -31,7 +31,7 @@ const Footer = () => {
             <a href="/login">log in</a>
             </div>
         </div>
-        <Copyright sx={{ mt: 3, mb: 4 }} />
+        <Copyright sx={{ mt: 2, mb: 4 }} />
         </>
      );
 }
