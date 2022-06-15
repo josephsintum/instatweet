@@ -15,18 +15,18 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Navbar from '../src/Navbar';
 import Footer from '../src/Footer';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        InstaTweet
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+// function Copyright(props) {
+//   return (
+//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://mui.com/">
+//         InstaTweet
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
 const theme = createTheme();
 
@@ -42,26 +42,46 @@ export default function SignIn() {
 
   return (
     <>
-    {/* <Navbar/> */}
+    <Navbar/>
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 9,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            border: '1px solid #d0e1f0',
+            padding: "6%",
+            borderRadius: "10px",
           }}
+          
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: '#1F85DE' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Log In
           </Typography>
+          <Typography component="h1" variant="h5" display="none">
+            Reset password
+          </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
+          <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Enter Email"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              sx={{
+                display:"none"
+              }}
+            />
+             <TextField
               margin="normal"
               required
               fullWidth
@@ -70,6 +90,9 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              sx={{
+                // display:"none"
+              }}
             />
             <TextField
               margin="normal"
@@ -93,25 +116,31 @@ export default function SignIn() {
             >
               Log In
             </Button>
-            <Grid container>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2, display:'none' }}
+            >
+              SEND
+            </Button>
+            <Grid container >
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" fontSize={"0.7rem"}>
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/signup" variant="body2">
+                <Link href="/signup" variant="body2" fontSize={"0.7rem"}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
     </ThemeProvider>
     <Footer/>
-    <Copyright sx={{ mt: 8, mb: 4 }} />
     </>
   );
 }

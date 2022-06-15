@@ -1,6 +1,21 @@
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 
+function Copyright(props) {
+    return (
+      <Typography variant="body2" color="text.secondary" align="center" {...props}>
+        {'Copyright © '}
+        <Link color="inherit" href="https://mui.com/">
+          InstaTweet
+        </Link>{' '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    );
+  }
 const Footer = () => {
     return ( 
+        <>
         <div className="footer-section">
             <div className="footer-top-row">
             <a href="#">about</a>
@@ -16,6 +31,8 @@ const Footer = () => {
             <a href="/login">log in</a>
             </div>
         </div>
+        <Copyright sx={{ mt: 2, mb: 4 }} />
+        </>
      );
 }
  
