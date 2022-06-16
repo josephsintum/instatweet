@@ -34,11 +34,25 @@ export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+
+    let userInfo = {
       email: data.get('email'),
       password: data.get('password'),
-    });
-  };
+    }
+    if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userInfo.email)){
+      console.log("correct infor")
+      if(/^[A-Za-z0-9]\w{7,14}$/.test(userInfo.password)){
+        
+        console.log(userInfo)
+      }else{
+        alert("Password must be between 7 and 14 characters")
+        console.log("Password must be between 7 and 14 characters")
+      }
+  }else{
+    alert("Email does not exist")
+    console.log("Email does not exist")
+    }
+  }
 
   return (
     <>
@@ -77,23 +91,8 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
-              sx={{
-                display:"none"
-              }}
             />
-             <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              sx={{
-                // display:"none"
-              }}
-            />
+             
             <TextField
               margin="normal"
               required
