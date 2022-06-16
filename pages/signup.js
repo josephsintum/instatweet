@@ -13,12 +13,14 @@ import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import Footer from "../src/Footer"
 import { css } from "@emotion/css"
+import Navbar from "../src/Navbar"
+
 
 export default function SignUp() {
+
   const handleSubmit = (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
-    // call the backend function
 
     const formData = {
       firstName: data.get("firstName"),
@@ -27,11 +29,23 @@ export default function SignUp() {
       password: data.get("password"),
     }
 
+    // Regex
+    const isValidEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    const isValidPassword = /^[A-Za-z0-9]\w{7,14}$/
+
+    // check all inputs
+    if (data.getAll(event.currentTarget)) {
+      alert("fields must be filled")
+    } else if (isValidEmail.test(formData.email)) {/* set erros msg*/ }
+    else if (isValidPassword.test(formData.password)) { /* set erros msg*/ }
+
+    // call the backend function
     fetch("/api/signup", { method: "POST", body: JSON.stringify(formData) })
   }
 
+
   return (
-    <>
+    <> <Navbar />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
