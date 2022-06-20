@@ -22,52 +22,54 @@ const theme = createTheme();
 
 export default function SignIn() {
 
+  const [formValues, setFormValues] = React.useState({
+    email: "",
+    password: "",
+  })
+  const [disableBtn, setDisableBtn] = React.useState(true)
+  const [emailError, setEmailError] = React.useState(false)
+  const [pwdError, setPwdError] = React.useState(false)
 
+  // todo:
+  //  validate data inform
+  //  if false disable sign up button
+  //  display error to form field
 
-  const [title, setTitle] = useState('a');
-  
-  const handleOnChange = (e) => {
-    
-    setTitle(e.target.value);
-    
-  };
-  console.log(title)
-  // const createTodo = () => {
-  //   const todoRef = firebase.database().ref('Todo');
-  //   const todo = {
-  //     title,
-  //     complete: false,
-  //   };
-
-  //   todoRef.push(todo);
-  // };
-
-
-
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-
-    let userInfo = {
-      email: data.get('email'),
-      password: data.get('password'),
-    }
-    if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userInfo.email)){
-      console.log("correct infor")
-      if(/^[A-Za-z0-9]\w{7,14}$/.test(userInfo.password)){
-        
-        console.log(userInfo)
-      }else{
-        alert("Password must be between 7 and 14 characters")
-        console.log("Password must be between 7 and 14 characters")
+  React.useEffect(() => {
+    for (let [_, value] of Object.entries(formValues)) {
+      if (!value) {
+        // todo: form validation
+        setDisableBtn(true)
+        return
       }
-  }else{
-    alert("Email does not exist")
-    console.log("Email does not exist")
+      setDisableBtn(false)
+    }
+  }, [formValues])
+
+
+  const updateForm = (event) => {
+    setFormValues((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }))
+    
+    console.log(event.target.name);
+    // validate password
+    if (event.target.name === "password") {
+      const isValidPassword = /^[A-Za-z0-9]\w{7,14}$/
+      let isPwdValid = isValidPassword.test(formValues.password)
+      setPwdError(!isPwdValid)
+      // todo: disable signup button
+    }
+
+    // validate email
+    else if (event.target.name === "email") {
+      const isValidEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+      let isEmailValid = isValidEmail.test(formValues.email)
+      setEmailError(!isEmailValid)
+      // todo: disable signup button
     }
   }
-
   return (
     <>
     <Navbar/>
@@ -95,7 +97,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5" display="none">
             Reset password
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form"  noValidate sx={{ mt: 1 }}>
           <TextField
               margin="normal"
               required
@@ -105,8 +107,9 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
-              value={title}
-              onChange={handleOnChange}
+              error={emailError}
+              // value={title}
+              onChange={updateForm}
             />
              
             <TextField
@@ -117,9 +120,10 @@ export default function SignIn() {
               label="Password"
               type="password"
               id="password"
+              error={pwdError}
               // value={title}
               autoComplete="current-password"
-              // onChange={handleOnChange}
+              onChange={updateForm}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -130,6 +134,7 @@ export default function SignIn() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={disableBtn}
             >
               Log In
             </Button>
