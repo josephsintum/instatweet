@@ -14,23 +14,37 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Navbar from '../src/Navbar';
 import Footer from '../src/Footer';
+import { useState } from 'react';
+// import firebase from '../src/utils/firebase';
 
-// function Copyright(props) {
-//   return (
-//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://mui.com/">
-//         InstaTweet
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
 
 const theme = createTheme();
 
 export default function SignIn() {
+
+
+
+  const [title, setTitle] = useState('a');
+  
+  const handleOnChange = (e) => {
+    
+    setTitle(e.target.value);
+    
+  };
+  console.log(title)
+  // const createTodo = () => {
+  //   const todoRef = firebase.database().ref('Todo');
+  //   const todo = {
+  //     title,
+  //     complete: false,
+  //   };
+
+  //   todoRef.push(todo);
+  // };
+
+
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -91,6 +105,8 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={title}
+              onChange={handleOnChange}
             />
              
             <TextField
@@ -101,7 +117,9 @@ export default function SignIn() {
               label="Password"
               type="password"
               id="password"
+              // value={title}
               autoComplete="current-password"
+              // onChange={handleOnChange}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}

@@ -15,6 +15,12 @@ import Footer from "../src/Footer"
 import { css } from "@emotion/css"
 
 export default function SignUp() {
+
+
+  
+
+
+
   const handleSubmit = (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
