@@ -81,3 +81,10 @@ h1 a {
     max-width: 55em;
     margin: 1em auto;
 }
+
+.wrong-entries {
+    color: red;
+    margin: 0% auto;
+    font-size: 0.8rem;
+    display: none;
+}

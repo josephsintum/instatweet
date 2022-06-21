@@ -14,36 +14,55 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Navbar from '../src/Navbar';
 import Footer from '../src/Footer';
-import { useState } from 'react';
-// import firebase from '../src/utils/firebase';
+import {useState,useEffect} from "react"
+import {db} from "../src/db/dbClient"
+import {collection, getDocs, addDoc, updateDoc, doc, deleteDoc} from "firebase/firestore"
 
 
 const theme = createTheme();
 
 export default function SignIn() {
 
+
+  //initialising states___________________________________________________________________________
+  const [users, setUsers] = useState([])
+  const usersCollectionRef = collection(db,"Users")
   const [formValues, setFormValues] = React.useState({
-    email: "",
-    password: "",
-  })
+      email: "",
+      password: "",
+    })
   const [disableBtn, setDisableBtn] = React.useState(true)
   const [emailError, setEmailError] = React.useState(false)
   const [pwdError, setPwdError] = React.useState(false)
+
+
+    //useEffectHook to get data from database_____________________________________________________
+  useEffect(()=>{
+
+    const getUsers = async()=>{
+      const data = await getDocs(usersCollectionRef)
+      setUsers(data.docs.map((doc)=>({...doc.data(), id:doc.id})))
+    }
+    getUsers()
+  }, [])
+
+  console.log(users);
 
   // todo:
   //  validate data inform
   //  if false disable sign up button
   //  display error to form field
 
+
   React.useEffect(() => {
-    for (let [_, value] of Object.entries(formValues)) {
-      if (!value) {
+      if (formValues.email!="" && formValues.password!="" && pwdError==false && emailError==false) {
         // todo: form validation
+        setDisableBtn(false)
+      }else{
         setDisableBtn(true)
-        return
       }
-      setDisableBtn(false)
-    }
+      
+    
   }, [formValues])
 
 
@@ -70,6 +89,28 @@ export default function SignIn() {
       // todo: disable signup button
     }
   }
+
+
+  const handleLogin =()=>{
+    const userExists = users.some((user)=>{
+    console.log(user.email);
+    console.log(formValues.email);
+    console.log(user.password);
+    console.log(formValues.password);
+      
+     return user.email == formValues.email && user.password == formValues.password;
+    })
+    
+    console.log(userExists);
+    if(userExists){
+
+    }else{
+      const errDiv = document.querySelector(".wrong-entries")
+      errDiv.style.display = "block"
+    }
+  }
+
+
   return (
     <>
     <Navbar/>
@@ -98,6 +139,9 @@ export default function SignIn() {
             Reset password
           </Typography>
           <Box component="form"  noValidate sx={{ mt: 1 }}>
+          <div className="wrong-entries">
+            Wrong email and password combination
+          </div>
           <TextField
               margin="normal"
               required
@@ -135,6 +179,7 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               disabled={disableBtn}
+              onClick = {handleLogin}
             >
               Log In
             </Button>
