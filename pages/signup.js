@@ -18,8 +18,12 @@ import Navbar from "../src/Navbar"
 
 export default function SignUp() {
 
+  let errMsg 
+  let helperMsg = ""
+
   const handleSubmit = (event) => {
     event.preventDefault()
+
     const data = new FormData(event.currentTarget)
 
     const formData = {
@@ -35,7 +39,9 @@ export default function SignUp() {
 
     // check all inputs
     if (data.getAll(event.currentTarget)) {
-      alert("fields must be filled")
+      helperMsg = "fields must be filled"
+      errMsg = true
+
     } else if (isValidEmail.test(formData.email)) {/* set erros msg*/ }
     else if (isValidPassword.test(formData.password)) { /* set erros msg*/ }
 
@@ -80,6 +86,8 @@ export default function SignUp() {
                   fullWidth
                   id="firstName"
                   label="First Name"
+                  // error={errMsg}
+                  // helperText={helperMsg}
                   autoFocus
                 />
               </Grid>
