@@ -15,8 +15,32 @@ import Footer from "../src/Footer"
 import { css } from "@emotion/css"
 import Navbar from "../src/Navbar"
 
-
 export default function SignUp() {
+  const [formValues, setFormValues] = React.useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  })
+  const [disableBtn, setDisableBtn] = React.useState(true)
+  const [emailError, setEmailError] = React.useState(false)
+  const [pwdError, setPwdError] = React.useState(false)
+
+  // todo:
+  //  validate data inform
+  //  if false disable sign up button
+  //  display error to form field
+
+  React.useEffect(() => {
+    for (let [_, value] of Object.entries(formValues)) {
+      if (!value) {
+        // todo: form validation
+        setDisableBtn(true)
+        return
+      }
+      setDisableBtn(false)
+    }
+  }, [formValues])
 
   let errMsg 
   let helperMsg = ""
@@ -49,9 +73,31 @@ export default function SignUp() {
     fetch("/api/signup", { method: "POST", body: JSON.stringify(formData) })
   }
 
+  const updateForm = (event) => {
+    setFormValues((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }))
+
+    // validate password
+    if (event.target.name === "password") {
+      const isValidPassword = /^[A-Za-z0-9]\w{7,14}$/
+      let isPwdValid = isValidPassword.test(formValues.password)
+      setPwdError(!isPwdValid)
+      // todo: disable signup button
+    }
+
+    // validate email
+    if (event.target.name === "email") {
+      const isValidEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+      setEmailError(!isValidEmail.test(formValues.email))
+      // todo: disable signup button
+    }
+  }
 
   return (
-    <> <Navbar />
+    <>
+      <Navbar />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -88,6 +134,8 @@ export default function SignUp() {
                   label="First Name"
                   // error={errMsg}
                   // helperText={helperMsg}
+                  value={formValues.firstName}
+                  onChange={updateForm}
                   autoFocus
                 />
               </Grid>
@@ -98,6 +146,8 @@ export default function SignUp() {
                   id="lastName"
                   label="Last Name"
                   name="lastName"
+                  value={formValues.lastName}
+                  onChange={updateForm}
                   autoComplete="family-name"
                 />
               </Grid>
@@ -108,6 +158,9 @@ export default function SignUp() {
                   id="email"
                   label="Email Address"
                   name="email"
+                  error={emailError}
+                  value={formValues.email}
+                  onChange={updateForm}
                   autoComplete="email"
                 />
               </Grid>
@@ -119,15 +172,10 @@ export default function SignUp() {
                   label="Password"
                   type="password"
                   id="password"
+                  error={pwdError}
+                  value={formValues.password}
+                  onChange={updateForm}
                   autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
                 />
               </Grid>
             </Grid>
@@ -136,6 +184,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={disableBtn}
             >
               Sign Up
             </Button>
