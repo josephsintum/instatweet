@@ -19,3 +19,4 @@ export default function handler(req, res) {
       .json({ error: "This route only supports POST request" })
   }
 }
+
